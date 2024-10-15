@@ -110,6 +110,32 @@ async def start_gp(client, message: Message, _):
     return await add_served_chat(message.chat.id)
 
 
+
+welcome_group = 2
+
+@app.on_message(filters.new_chat_members, group=welcome_group)
+async def welcome(client, message: Message):
+    try:
+        chat_id = message.chat.id
+        for member in message.new_chat_members:
+            if member.id in config.OWNER_ID:
+                return await message.reply_text(
+                    f"#BOT_OWNER\n"
+                    f"Stay Alert ⚠️\n"
+                    f"{member.mention} Owner of {app.mention} just joined the group <code>{message.chat.title}</code>."
+                )
+            if member.id in SUDOERS:
+                return await message.reply_text(
+                    f"#Sudo_User\n"
+                    f"Stay Alert ⚠️\n"
+                    f"{member.mention} Of {app.mention} Sudo User  just joined the group <code>{message.chat.title}</code>."
+                )
+        return
+    except Exception as e:
+        print(f"Error in welcome handler: {e}")
+        return
+
+
 @app.on_message(filters.new_chat_members, group=-1)
 async def welcome(client, message: Message):
     for member in message.new_chat_members:
@@ -137,22 +163,6 @@ async def welcome(client, message: Message):
                         disable_web_page_preview=True,
                     )
                     return await app.leave_chat(message.chat.id)
-
-                if member.id in SUDOERS:
-                    await message.reply_text(
-                        """#Sudo_User
-                        𝙎𝙩𝙖𝙮 𝘼𝙡𝙚𝙧𝙩 ⚠️
-                        𝗢𝗳 {0} 𝗦𝘂𝗱𝗼 𝗨𝘀𝗲𝗿 {1} 𝙟𝙪𝙨𝙩 𝙟𝙤𝙞𝙣𝙚𝙙 𝙩𝙝𝙚 𝙜𝙧𝙤𝙪𝙥 <code>{2}</code>.
-                        """.format(app.mention, member.mention, message.chat.title)
-                    )
-                if member.id in config.OWNER_ID:
-                    await message.reply_text(
-                        """#BOT_OWNER
-                        𝙎𝙩𝙖𝙮 𝘼𝙡𝙚𝙧𝙩 ⚠️
-                        {0} 𝙊𝙬𝙣𝙚𝙧 {1} 𝙟𝙪𝙨𝙩 𝙟𝙤𝙞𝙣𝙚𝙙 𝙩𝙝𝙚 𝙜𝙧𝙤𝙪𝙥 <code>{2}</code>.
-                        """.format(app.mention, member.mention, message.chat.title)
-                    )
-                
                 out = start_panel(_)
                 await message.reply_photo(
                     photo=config.START_IMG_URL,
