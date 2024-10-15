@@ -80,12 +80,12 @@ async def stream(
                 except:
                     await app.send_message(
                 config.LOG_GROUP_ID,
-                f"ʜᴇʏ [ᴏᴡɴᴇʀ](tg://user?id={config.OP}) ᴍᴀʏ ʙᴇ ᴄᴏᴏᴋɪᴇs ʜᴀs ʙᴇᴇɴ ᴅᴇᴀᴅ ᴘʟᴇᴀsᴇ ᴜᴘᴅᴀᴛᴇ ᴄᴏᴏᴋɪᴇ",
+                f"ʜᴇʏ [ᴏᴡɴᴇʀ](tg://user?id={config.OWNER_ID}) ᴍᴀʏ ʙᴇ ᴄᴏᴏᴋɪᴇs ʜᴀs ʙᴇᴇɴ ᴅᴇᴀᴅ ᴘʟᴇᴀsᴇ ᴜᴘᴅᴀᴛᴇ ᴄᴏᴏᴋɪᴇ",
             )
                     raise AssistantErr(_["play_14"])
                     await app.send_message(
-                config.OP,
-                f"ʜᴇʏ [ᴏᴡɴᴇʀ](tg://user?id={config.OP}) ᴍᴀʏ ʙᴇ ᴄᴏᴏᴋɪᴇs ʜᴀs ʙᴇᴇɴ ᴅᴇᴀᴅ ᴘʟᴇᴀsᴇ ᴜᴘᴅᴀᴛᴇ ᴄᴏᴏᴋɪᴇ",
+                config.OWNER_ID,
+                f"ʜᴇʏ [ᴏᴡɴᴇʀ](tg://user?id={config.OWNER_ID}) ᴍᴀʏ ʙᴇ ᴄᴏᴏᴋɪᴇs ʜᴀs ʙᴇᴇɴ ᴅᴇᴀᴅ ᴘʟᴇᴀsᴇ ᴜᴘᴅᴀᴛᴇ ᴄᴏᴏᴋɪᴇ",
             )
                 await AMBOT.join_call(
                     chat_id,
@@ -159,12 +159,12 @@ async def stream(
         except:
             await app.send_message(
                 config.LOG_GROUP_ID,
-                f"ʜᴇʏ [ᴏᴡɴᴇʀ](tg://user?id={config.OP}) ᴍᴀʏ ʙᴇ ᴄᴏᴏᴋɪᴇs ʜᴀs ʙᴇᴇɴ ᴅᴇᴀᴅ ᴘʟᴇᴀsᴇ ᴜᴘᴅᴀᴛᴇ ᴄᴏᴏᴋɪᴇ",
+                f"ʜᴇʏ [ᴏᴡɴᴇʀ](tg://user?id={config.OWNER_ID}) ᴍᴀʏ ʙᴇ ᴄᴏᴏᴋɪᴇs ʜᴀs ʙᴇᴇɴ ᴅᴇᴀᴅ ᴘʟᴇᴀsᴇ ᴜᴘᴅᴀᴛᴇ ᴄᴏᴏᴋɪᴇ",
             )
             raise AssistantErr(_["play_14"])
             await app.send_message(
-                config.OP,
-                f"ʜᴇʏ [ᴏᴡɴᴇʀ](tg://user?id={config.OP}) ᴍᴀʏ ʙᴇ ᴄᴏᴏᴋɪᴇs ʜᴀs ʙᴇᴇɴ ᴅᴇᴀᴅ ᴘʟᴇᴀsᴇ ᴜᴘᴅᴀᴛᴇ ᴄᴏᴏᴋɪᴇ",
+                config.OWNER_ID,
+                f"ʜᴇʏ [ᴏᴡɴᴇʀ](tg://user?id={config.OWNER_ID}) ᴍᴀʏ ʙᴇ ᴄᴏᴏᴋɪᴇs ʜᴀs ʙᴇᴇɴ ᴅᴇᴀᴅ ᴘʟᴇᴀsᴇ ᴜᴘᴅᴀᴛᴇ ᴄᴏᴏᴋɪᴇ",
             )
 
         if await is_active_chat(chat_id):
