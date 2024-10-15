@@ -119,12 +119,14 @@ async def welcome(client, message: Message):
             if await is_banned_user(member.id):
                 try:
                     await message.chat.ban_member(member.id)
-                except:
-                    pass
+                except Exception as e:
+                    print(f"Failed to ban user: {e}")
+            
             if member.id == app.id:
                 if message.chat.type != ChatType.SUPERGROUP:
                     await message.reply_text(_["start_4"])
                     return await app.leave_chat(message.chat.id)
+                
                 if message.chat.id in await blacklisted_chats():
                     await message.reply_text(
                         _["start_5"].format(
@@ -137,48 +139,20 @@ async def welcome(client, message: Message):
                     return await app.leave_chat(message.chat.id)
 
                 if member.id in SUDOERS:
-                    return await message.reply_text(
+                    await message.reply_text(
                         """#Sudo_User
                         𝙎𝙩𝙖𝙮 𝘼𝙡𝙚𝙧𝙩 ⚠️
                         𝗢𝗳 {0} 𝗦𝘂𝗱𝗼 𝗨𝘀𝗲𝗿 {1} 𝙟𝙪𝙨𝙩 𝙟𝙤𝙞𝙣𝙚𝙙 𝙩𝙝𝙚 𝙜𝙧𝙤𝙪𝙥 <code>{2}</code>.
-                        
-                        𝗦𝘂𝗽𝗽𝗼𝗿𝘁 𝗠𝗲 𝗛𝗲𝗿𝗲 👇🏻🤭💕
-                        ┏━━━━━━━━━━━━┓
-                        ┣★ 𝗨𝗽𝗱𝗮𝘁𝗲 -: @AMBOTYT  
-                        ┣★ 𝗨𝗽𝗱𝗮𝘁𝗲 -: @AbhiModszYT_Return 
-                        ┣★ 𝗦𝘂𝗽𝗽𝗼𝗿𝘁 -: @AM_YTSupport \n
-                        𝗕𝗼𝘁 𝗨𝘀𝗲𝗿𝗡𝗮𝗺𝗲 -: @{3}
-                        ┣★ 𝐀𝐬𝐬𝐢𝐬𝐭𝐚𝐧𝐭 -: {4}
-                        ┣★ 𝗦𝘂𝗽𝗲𝗿𝗯𝗮𝗻 𝗟𝗼𝗴𝘀 -: @SuperBanSBots
-                        ┣★ 𝓐𝓫𝓸𝓾𝓽 𝓐𝓶𝓑𝓸𝓽 -: @AbouT_AMBoT
-                        ┣★ 𝗳𝗲𝗱𝗲𝗿𝗮𝘁𝗶𝗼𝗻𝘀 𝗝𝗼𝗶𝗻 𝗛𝗲𝗿𝗲 -:<code> /joinfed f6c21c57-962c-4858-97a2-4d2f16cd68d6</code>
-                        ┣★ 𝙉𝙤𝙩𝙚  -: 𝗧𝗵𝗶𝘀 𝗜𝘀 𝗢𝗻𝗹𝘆 𝗙𝗼𝗿 {4} 𝗠𝘂𝘀𝗶𝗰 𝗔𝘀𝘀𝗶𝘀 𝗪𝗲𝗹𝗰𝗼𝗺𝗲.
-                        """.format(
-                            app.mention, member.mention, message.chat.title, app.username, member.mention
-                            )
+                        """.format(app.mention, member.mention, message.chat.title)
                     )
-                except:
-                    pass
                 if member.id in config.OWNER_ID:
-                    return await message.reply_text(
+                    await message.reply_text(
                         """#BOT_OWNER
                         𝙎𝙩𝙖𝙮 𝘼𝙡𝙚𝙧𝙩 ⚠️
                         {0} 𝙊𝙬𝙣𝙚𝙧 {1} 𝙟𝙪𝙨𝙩 𝙟𝙤𝙞𝙣𝙚𝙙 𝙩𝙝𝙚 𝙜𝙧𝙤𝙪𝙥 <code>{2}</code>.
-                        
-                        𝗦𝘂𝗽𝗽𝗼𝗿𝘁 𝗠𝗲 𝗛𝗲𝗿𝗲 👇🏻🤭💕
-                        ┏━━━━━━━━━━━━┓\n┣★ 𝗨𝗽𝗱𝗮𝘁𝗲 -: @AMBOTYT  
-                        ┣★ 𝗨𝗽𝗱𝗮𝘁𝗲 -: @AbhiModszYT_Return 
-                        ┣★ 𝗦𝘂𝗽𝗽𝗼𝗿𝘁 -: @AM_YTSupport 
-                        ┣★ 𝗕𝗼𝘁 𝗨𝘀𝗲𝗿𝗡𝗮𝗺𝗲 -: @{3}\n┣★ 𝗦𝘂𝗽𝗲𝗿𝗯𝗮𝗻 𝗟𝗼𝗴𝘀 -: @SuperBanSBots
-                        ┣★ 𝓐𝓫𝓸𝓾𝓽 𝓐𝓶𝓑𝓸𝓽 -: @AbouT_AMBoT
-                        ┣★ 𝗳𝗲𝗱𝗲𝗿𝗮𝘁𝗶𝗼𝗻𝘀 𝗝𝗼𝗶𝗻 𝗛𝗲𝗿𝗲 -:<code> /joinfed f6c21c57-962c-4858-97a2-4d2f16cd68d6</code>
-                        ┣★ 𝙉𝙤𝙩𝙚  -: 𝗧𝗵𝗶𝘀 𝗜𝘀 𝗢𝗻𝗹𝘆 𝗙𝗼𝗿 𝗪𝗲𝗹𝗰𝗼𝗺𝗲 𝗙𝗼𝗿 𝗠𝘆 𝗢𝘄𝗻𝗲𝗿 {4}.
-                        """.format(
-                            app.mention, member.mention, message.chat.title, app.username, member.mention
-                            )
+                        """.format(app.mention, member.mention, message.chat.title)
                     )
-                except:
-                    pass
+                
                 out = start_panel(_)
                 await message.reply_photo(
                     photo=config.START_IMG_URL,
@@ -193,4 +167,4 @@ async def welcome(client, message: Message):
                 await add_served_chat(message.chat.id)
                 await message.stop_propagation()
         except Exception as ex:
-            print(ex)
+            print(f"Error occurred in welcome handler: {ex}")
