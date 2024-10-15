@@ -118,22 +118,40 @@ async def welcome(client, message: Message):
     try:
         chat_id = message.chat.id
         for member in message.new_chat_members:
-            if member.id in config.OWNER_ID:
-                return await message.reply_text(
-                    f"#BOT_OWNER\n"
-                    f"Stay Alert ⚠️\n"
-                    f"{member.mention} Owner of {app.mention} just joined the group <code>{message.chat.title}</code>."
-                )
-            if member.id in SUDOERS:
-                return await message.reply_text(
-                    f"#Sudo_User\n"
-                    f"Stay Alert ⚠️\n"
-                    f"{member.mention} Of {app.mention} Sudo User  just joined the group <code>{message.chat.title}</code>."
-                )
+            if isinstance(config.OWNER_ID, int): 
+                if member.id == config.OWNER_ID:
+                    return await message.reply_text(
+                        f"#BOT_OWNER\n"
+                        f"Stay Alert ⚠️\n"
+                        f"{app.mention} Owner {member.mention} just joined the group <code>{message.chat.title}</code>."
+                    )
+            elif isinstance(config.OWNER_ID, (list, set)): 
+                if member.id in config.OWNER_ID:
+                    return await message.reply_text(
+                        f"#BOT_OWNER\n"
+                        f"Stay Alert ⚠️\n"
+                        f"{app.mention} Owner {member.mention} just joined the group <code>{message.chat.title}</code>."
+                    )
+            if isinstance(SUDOERS, int): 
+                if member.id == SUDOERS:
+                    return await message.reply_text(
+                        f"#Sudo_User\n"
+                        f"Stay Alert ⚠️\n"
+                        f"Of {app.mention} Sudo User {member.mention} just joined the group <code>{message.chat.title}</code>."
+                    )
+            elif isinstance(SUDOERS, (list, set)):
+                if member.id in SUDOERS:
+                    return await message.reply_text(
+                        f"#Sudo_User\n"
+                        f"Stay Alert ⚠️\n"
+                        f"Of {app.mention} Sudo User {member.mention} just joined the group <code>{message.chat.title}</code>."
+                    )
+
         return
     except Exception as e:
         print(f"Error in welcome handler: {e}")
         return
+
 
 
 @app.on_message(filters.new_chat_members, group=-1)
