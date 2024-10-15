@@ -78,15 +78,7 @@ async def stream(
                         vidid, mystic, video=status, videoid=True
                     )
                 except:
-                    await app.send_message(
-                config.LOG_GROUP_ID,
-                f"ʜᴇʏ [ᴏᴡɴᴇʀ](tg://user?id={config.OWNER_ID}) ᴍᴀʏ ʙᴇ ᴄᴏᴏᴋɪᴇs ʜᴀs ʙᴇᴇɴ ᴅᴇᴀᴅ ᴘʟᴇᴀsᴇ ᴜᴘᴅᴀᴛᴇ ᴄᴏᴏᴋɪᴇ",
-            )
                     raise AssistantErr(_["play_14"])
-                    await app.send_message(
-                config.OWNER_ID,
-                f"ʜᴇʏ [ᴏᴡɴᴇʀ](tg://user?id={config.OWNER_ID}) ᴍᴀʏ ʙᴇ ᴄᴏᴏᴋɪᴇs ʜᴀs ʙᴇᴇɴ ᴅᴇᴀᴅ ᴘʟᴇᴀsᴇ ᴜᴘᴅᴀᴛᴇ ᴄᴏᴏᴋɪᴇ",
-            )
                 await AMBOT.join_call(
                     chat_id,
                     original_chat_id,
@@ -157,16 +149,7 @@ async def stream(
                 vidid, mystic, videoid=True, video=status
             )
         except:
-            await app.send_message(
-                config.LOG_GROUP_ID,
-                f"ʜᴇʏ [ᴏᴡɴᴇʀ](tg://user?id={config.OWNER_ID}) ᴍᴀʏ ʙᴇ ᴄᴏᴏᴋɪᴇs ʜᴀs ʙᴇᴇɴ ᴅᴇᴀᴅ ᴘʟᴇᴀsᴇ ᴜᴘᴅᴀᴛᴇ ᴄᴏᴏᴋɪᴇ",
-            )
             raise AssistantErr(_["play_14"])
-            await app.send_message(
-                config.OWNER_ID,
-                f"ʜᴇʏ [ᴏᴡɴᴇʀ](tg://user?id={config.OWNER_ID}) ᴍᴀʏ ʙᴇ ᴄᴏᴏᴋɪᴇs ʜᴀs ʙᴇᴇɴ ᴅᴇᴀᴅ ᴘʟᴇᴀsᴇ ᴜᴘᴅᴀᴛᴇ ᴄᴏᴏᴋɪᴇ",
-            )
-
         if await is_active_chat(chat_id):
             await put_queue(
                 chat_id,
