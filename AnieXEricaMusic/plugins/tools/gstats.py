@@ -1,7 +1,6 @@
 import os
 import time
 from asyncio import sleep
-from blackpink import blackpink as bp
 from pyrogram import enums, filters
 from pyrogram.types import Message, ChatPrivileges
 from pyrogram.types import Message
