@@ -4,7 +4,7 @@ from pyrogram.enums import ChatMemberStatus
 from pyrogram.errors import InviteRequestSent
 from AnieXEricaMusic import app
 from AnieXEricaMusic.misc import SUDOERS
-from AnieXEricaMusic.utils.database import get_assistant
+from AnieXEricaMusic.utils.database import get_assistant, is_active_chat
 from config import LOG_GROUP_ID
 
 @app.on_message(filters.command(["leaveall", f"leaveall@{app.username}"]) & SUDOERS)
@@ -20,18 +20,17 @@ async def leave_all(client, message):
         async for dialog in userbot.get_dialogs():
             if dialog.chat.id == LOG_GROUP_ID:
                 continue
-            try:
-                await userbot.leave_chat(dialog.chat.id)
-                left += 1
-                await lol.edit(
+            if not await is_active_chat(dialog.chat.id):
+                try:
+                    await userbot.leave_chat(dialog.chat.id)
+                    left += 1
+                    await lol.edit(
                     f"ᴜsᴇʀʙᴏᴛ ʟᴇᴀᴠɪɴɢ ᴀʟʟ ɢʀᴏᴜᴘ...\n\nʟᴇғᴛ: {left} ᴄʜᴀᴛs.\nғᴀɪʟᴇᴅ: {failed} ᴄʜᴀᴛs."
                 )
-            except BaseException:
-                failed += 1
-                await lol.edit(
-                    f"ᴜsᴇʀʙᴏᴛ ʟᴇᴀᴠɪɴɢ...\n\nʟᴇғᴛ: {left} chats.\nғᴀɪʟᴇᴅ: {failed} chats."
-                )
-            await asyncio.sleep(3)
+                except BaseException:
+                    failed += 1
+                    await lol.edit(f"ᴜsᴇʀʙᴏᴛ ʟᴇᴀᴠɪɴɢ...\n\nʟᴇғᴛ: {left} chats.\nғᴀɪʟᴇᴅ: {failed} chats.")
+                    await asyncio.sleep(3)
     finally:
         await app.send_message(
             message.chat.id,
