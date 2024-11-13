@@ -23,7 +23,7 @@ spotipy
 tgcrypto
 unidecode
 uvloop
-yt-dlp==2024.7.9
+yt-dlp
 youtube-search
 youtube-search-python
 pyromod
