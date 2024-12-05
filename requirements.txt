@@ -7,10 +7,10 @@ ffmpeg-python
 gitpython
 hachoir
 heroku3
-motor
+motor==2.5.0
 numpy
 opencv-python
-pillow==9.5.0
+pillow
 psutil
 py-tgcalls==0.9.7
 pykeyboard
@@ -26,6 +26,5 @@ uvloop
 yt-dlp
 youtube-search
 youtube-search-python
-pyromod
-wget
-blackpink
+httpx[http2]==0.27.2
+bs4
